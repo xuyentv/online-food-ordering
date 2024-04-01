@@ -41,7 +41,7 @@ public class Restaurant {
     private List<Order> orders = new ArrayList<>();
 
     @ElementCollection
-    @Column(length = 1000)
+    @Column(length = 1000000000)
     private List<String> images;
 
     private LocalDateTime registrationDate;

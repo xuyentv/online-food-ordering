@@ -1,5 +1,6 @@
 package com.igris.controller;
 
+import com.igris.dto.RestaurantDto;
 import com.igris.model.Restaurant;
 import com.igris.model.User;
 import com.igris.service.RestaurantService;
@@ -33,7 +34,7 @@ public class RestaurantController {
 
 
     @GetMapping()
-    public ResponseEntity<List<Restaurant>> getAll(
+    public ResponseEntity<List<Restaurant>> getAllRestaurant(
             @RequestHeader("Authorization") String jwt
     ) throws Exception {
         User user = userService.findUserByJwtToken(jwt);
@@ -44,7 +45,7 @@ public class RestaurantController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Restaurant> getAll(
+    public ResponseEntity<Restaurant> findRestaurantById(
             @RequestHeader("Authorization") String jwt,
             @PathVariable Long id
     ) throws Exception {
@@ -53,6 +54,15 @@ public class RestaurantController {
         return new ResponseEntity<>(restaurant, HttpStatus.OK);
     }
 
+    @PutMapping("/{id}/add-favorites")
+    public ResponseEntity<RestaurantDto> addToFavorites(
+            @RequestHeader("Authorization") String jwt,
+            @PathVariable Long id
+    ) throws Exception {
+        User user = userService.findUserByJwtToken(jwt);
+        RestaurantDto dto = restaurantService.addToFavorites(id, user);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
 
 
 }

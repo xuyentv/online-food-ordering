@@ -56,7 +56,7 @@ public class AdminRestaurantController {
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/status")
     public ResponseEntity<Restaurant> updateRestaurantStatus(
             @RequestHeader("Authorization") String jwt,
             @PathVariable Long id
