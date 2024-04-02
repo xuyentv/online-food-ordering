@@ -1,0 +1,28 @@
+###  API ĐĂNG KÝ
+POST http://localhost:9000/auth/signup
+Accept: application/json
+Content-Type: application/json
+
+{
+   "fullName":"Xuyen",
+   "email":"minhxuyen2705@gmail.com",
+   "password":"Xuyen2007@",
+   "role":"ROLE_RESTAURANT_OWNER"
+}
+
+
+### API ĐĂNG NHẬP
+
+###  API ĐĂNG KÝ
+POST http://localhost:9000/auth/sign-in
+Accept: application/json
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTIwNDcyNjcsImV4cCI6MTcxMjEzMzY2NywiZW1haWwiOiJtaW5oeHV5ZW4yNzA1QGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiIn0.ypBl_52G3HmgdUxE7VLIu3NvOkp6SNEjZwBJeMD_reThDTz4PxTMFY09qiraDN-oJD5HhdfFBpEcppbw8UKdwg"
+
+{
+  "email":"minhxuyen2705@gmail.com",
+  "password":"Xuyen2007@"
+}
+
+
+### API TẠO RESTAURANT.
