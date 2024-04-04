@@ -8,6 +8,7 @@ import com.igris.repository.IngredientsItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,11 +74,18 @@ public class IngredientsServiceImpl implements IngredientsService{
 
     @Override
     public List<IngredientsItem> findRestaurantsIngredients(Long restaurantId) {
-        return null;
+        return ingredientsItemRepository.findByRestaurantId(restaurantId);
     }
 
     @Override
     public IngredientsItem updateStock(Long id) throws Exception {
-        return null;
+        Optional<IngredientsItem> optionalIngredientsItem = ingredientsItemRepository.findById(id);
+        if (optionalIngredientsItem.isEmpty()){
+            throw new Exception("ingredient not found");
+        }
+        IngredientsItem ingredientsItem = optionalIngredientsItem.get();
+        ingredientsItem.setInStoke(!ingredientsItem.isInStoke());
+
+        return ingredientsItemRepository.save(ingredientsItem);
     }
 }
