@@ -1,13 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
-import { Navbar } from './components/Nav/Narbar';
+import {ThemeProvider, CssBaseline} from '@mui/material';
+import {darkTheme} from './Theme/DarkTheme';
+import {Navbar} from './components/Navbar/Navbar';
+import Home from "./components/Home/Home";
 
 function App() {
-  return (
-    <div className="App">
-      <Navbar></Navbar>
-    </div>
-  );
+    return (
+        < ThemeProvider theme={darkTheme}>
+            <CssBaseline> < /CssBaseline>
+            <Navbar> < /Navbar>
+            <Home/>
+        < /ThemeProvider>
+    );
 }
 
 export default App;
