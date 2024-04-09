@@ -1,6 +1,7 @@
 import React from "react";
 import "./Home.css"
 import MultiItemCarousel from "./MultiItemCarousel";
+import RestaurantCard from "../Restaurant/RestaurantCard";
 
 
 const Home = () => {
@@ -27,7 +28,7 @@ const Home = () => {
                     Order From Our Handpicked Favorites
                 </h1>
                 <div>
-
+                    <RestaurantCard/>
                 </div>
             </section>
 

@@ -1,5 +1,5 @@
 import './App.css';
-import {ThemeProvider, CssBaseline} from '@mui/material';
+import {CssBaseline, ThemeProvider} from '@mui/material';
 import {darkTheme} from './Theme/DarkTheme';
 import {Navbar} from './components/Navbar/Navbar';
 import Home from "./components/Home/Home";
@@ -10,6 +10,7 @@ function App() {
             <CssBaseline> < /CssBaseline>
             <Navbar> < /Navbar>
             <Home/>
+
         < /ThemeProvider>
     );
 }
