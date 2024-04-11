@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, Chip} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import {Favorite} from "@mui/icons-material";
+import {Favorite, FavoriteBorder} from "@mui/icons-material";
 
 const RestaurantCard = () => {
     return (
@@ -19,16 +19,13 @@ const RestaurantCard = () => {
                     label={true ? 'open' : 'closed'}
                 />
                 <div className={'p-4 textPart lg:flex w-full justify-between'}>
-                    <div
-                        className={'space-y-1'}
-                    >
+                    <div className={'space-y-1'}>
                         <p className={'font-semibold text-lg'}>Indian Fast Food</p>
-                        <p className={'text-gray-500 text-sm'}>Demo</p>
-
+                        <p className={'text-gray-500 text-sm'}>Craving it all? Dive into our global fla....</p>
                     </div>
                     <div>
                         <IconButton>
-                            {true?  <Favorite></Favorite> : <Chip></Chip>}
+                            {true ? <Favorite></Favorite> : <FavoriteBorder></FavoriteBorder>}
                         </IconButton>
                     </div>
                 </div>
