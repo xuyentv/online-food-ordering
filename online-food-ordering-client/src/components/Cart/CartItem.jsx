@@ -4,7 +4,7 @@ import {AddCircleOutline, RemoveCircleOutline} from "@mui/icons-material";
 import {Chip} from "@mui/material";
 
 const items = [
-    1, 2, 3
+    1, 2, 3,4
 ]
 const CartItem = () => {
     return (

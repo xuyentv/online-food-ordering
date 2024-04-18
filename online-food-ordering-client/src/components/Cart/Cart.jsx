@@ -3,7 +3,7 @@ import {Box, Button, Card, Divider, Grid, Modal, TextField} from "@mui/material"
 import CartItem from "./CartItem";
 import AddressCart from "./AddressCart";
 import {AddLocation} from "@mui/icons-material";
-import {ErrorMessage, Field, Formik} from "formik";
+import {Field, Form, Formik} from "formik";
 // import * as Yup from "yup"
 
 const style = {
@@ -32,7 +32,7 @@ const initialValues = {
 // })
 
 const items = [
-    1, 2, 3
+    1, 2, 3, 4
 ]
 const Cart = () => {
     const createOrderUsingSelectedAddress = () => {
@@ -44,7 +44,8 @@ const Cart = () => {
 
     }
     const handleClose = () => setOpen(false)
-    const handleSubmit = () => {
+    const handleSubmit = (value) => {
+        console.log('form value', value)
 
     }
     return (
@@ -112,30 +113,54 @@ const Cart = () => {
             >
                 <Box sx={style}>
                     <Formik initialValues={initialValues}
-                            // validationSchema={validationSchema}
+                        // validationSchema={validationSchema}
                             onSubmit={handleSubmit}
                     >
-
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <Field as={TextField}
-                                       label="Street Address"
-                                       component={TextField}
-                                       name={"streetAddress"}
-                                       fullWidth
-                                       variant="outlined"
-                                       // error={!ErrorMessage("streetAddress")}
-                                       // helperText={
-                                       //     <ErrorMessage>
-                                       //         {(msg)=> <span className={'text-red-400'}>{msg}</span>}
-                                       //     </ErrorMessage>
-                                       // }
-                                />
+                        <Form>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <Field as={TextField}
+                                           label="Street Address"
+                                           component={TextField}
+                                           name={"streetAddress"}
+                                           fullWidth
+                                           variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Field as={TextField}
+                                           label="state"
+                                           component={TextField}
+                                           name={"state"}
+                                           fullWidth
+                                           variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Field as={TextField}
+                                           label="pincode"
+                                           component={TextField}
+                                           name={"pinCode"}
+                                           fullWidth
+                                           variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Field as={TextField}
+                                           label="city"
+                                           component={TextField}
+                                           name={"city"}
+                                           fullWidth
+                                           variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Button fullWidth variant={'contained'} type={'submit'} color={'primary'}>Deliver
+                                        Here</Button>
+                                </Grid>
 
                             </Grid>
-
-                        </Grid>
-
+                        </Form>
                     </Formik>
                 </Box>
             </Modal>

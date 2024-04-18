@@ -2,8 +2,9 @@ import React from "react";
 import "./Home.css"
 import MultiItemCarousel from "./MultiItemCarousel";
 import RestaurantCard from "../Restaurant/RestaurantCard";
+import Auth from "../Auth/Auth";
 
-const restaurantCards = [1,2,3,4,5,6,4,7,8,4,65,3,76,78,8,3,37,7,3]
+const restaurantCards = [1, 2, 3, 4, 5, 6, 4, 7, 8, 4, 65, 3, 76, 78, 8, 3, 37, 7, 3]
 const Home = () => {
     return (
         <div className={'pb-10'}>
@@ -28,7 +29,7 @@ const Home = () => {
                     Order From Our Handpicked Favorites
                 </h1>
                 <div className={'flex flex-wrap items-center justify-around gap-5'}>
-                    {restaurantCards.map(item=> <RestaurantCard/>)}
+                    {restaurantCards.map(item => <RestaurantCard/>)}
                 </div>
             </section>
 
