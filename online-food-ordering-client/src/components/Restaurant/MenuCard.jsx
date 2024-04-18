@@ -42,6 +42,9 @@ const demo = [
 
 ]
 const MenuCard = () => {
+    const handleCheckBoxChange = (item)=> {
+        console.log(item)
+    }
     return (
         <Accordion>
             <AccordionSummary
@@ -71,7 +74,7 @@ const MenuCard = () => {
                                 <p>{item.category}</p>
                                 <FormGroup>
                                     {item.ingredients.map((item) => (
-                                        <FormControlLabel control={<Checkbox/>} label={item}/>
+                                        <FormControlLabel control={<Checkbox onChange={()=> handleCheckBoxChange(item)}/>} label={item}/>
                                     ))}
                                 </FormGroup>
                             </div>

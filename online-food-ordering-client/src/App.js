@@ -5,6 +5,7 @@ import {Navbar} from './components/Navbar/Navbar';
 import Home from "./components/Home/Home";
 import RestaurantCard from "./components/Restaurant/RestaurantCard";
 import RestaurantDetail from "./components/Restaurant/RestaurantDetail";
+import Cart from "./components/Cart/Cart";
 
 function App() {
     return (
@@ -12,7 +13,8 @@ function App() {
             <CssBaseline> < /CssBaseline>
             <Navbar> < /Navbar>
             {/*<Home/>*/}
-            <RestaurantDetail></RestaurantDetail>
+            {/*<RestaurantDetail></RestaurantDetail>*/}
+            <Cart></Cart>
         < /ThemeProvider>
     );
 }
