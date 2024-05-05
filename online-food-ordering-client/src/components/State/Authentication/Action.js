@@ -1,9 +1,10 @@
 import {
-    ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCESS,
+    ADD_TO_FAVORITE_FAILURE,
+    ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCESS, GET_USER_FAILURE,
     GET_USER_REQUEST,
-    GET_USER_SUCCESS,
+    GET_USER_SUCCESS, LOGIN_FAILURE,
     LOGIN_REQUEST,
-    LOGIN_SUCCESS, LOGOUT,
+    LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE,
     REGISTER_REQUEST,
     REGISTER_SUCCESS
 } from "./ActionType";
@@ -18,33 +19,35 @@ export const registerUser = (reqData) => async (dispatch) => {
             localStorage.setItem("jwt", data?.jwt)
         }
         if (data?.role === 'ROLE_RESTAURANT_OWNER') {
-            reqData.navigation.navigate('/admin/restaurant');
+            reqData.navigate('/admin/restaurant');
         } else {
-            reqData.navigation.navigate('/');
+            reqData.navigate('/');
         }
         dispatch({type: REGISTER_SUCCESS, payload: data?.jwt});
         console.log('registerUser success : ', data)
     } catch (error) {
+        dispatch({type:REGISTER_FAILURE, payload: error})
         console.log(error);
     }
 }
 
 
-export const loginrUser = (reqData) => async (dispatch) => {
+export const loginUser = (reqData) => async (dispatch) => {
     dispatch({type: LOGIN_REQUEST})
     try {
-        const {data} = await axios.post(`${API_URL}/auth/signin`, reqData.userData)
+        const {data} = await axios.post(`${API_URL}/auth/sign-in`, reqData.userData)
         if (data?.jwt) {
             localStorage.setItem("jwt", data?.jwt)
         }
         if (data?.role === 'ROLE_RESTAURANT_OWNER') {
-            reqData.navigation.navigate('/admin/restaurant');
+            reqData.navigate('/admin/restaurant');
         } else {
-            reqData.navigation.navigate('/');
+            reqData.navigate('/');
         }
         dispatch({type: LOGIN_SUCCESS, payload: data?.jwt});
         console.log('login success : ', data)
     } catch (error) {
+        dispatch({type:LOGIN_FAILURE, payload: error})
         console.log(error);
     }
 }
@@ -52,7 +55,7 @@ export const loginrUser = (reqData) => async (dispatch) => {
 export const getUser = (jwt) => async (dispatch) => {
     dispatch({type: GET_USER_REQUEST})
     try {
-        const {data} = await api.get(`auth/signup`, {
+        const {data} = await api.get(`/api/users/profile`, {
             headers: {
                 Authorization: `Bearer ${jwt}`
             }
@@ -60,6 +63,7 @@ export const getUser = (jwt) => async (dispatch) => {
         dispatch({type: GET_USER_SUCCESS, payload: data});
         console.log('user profile: ', data)
     } catch (error) {
+        dispatch({type:GET_USER_FAILURE, payload: error})
         console.log(error);
     }
 }
@@ -75,12 +79,14 @@ export const addToFavorite = ({jwt, restaurantId}) => async (dispatch) => {
         dispatch({type: ADD_TO_FAVORITE_SUCCESS, payload: data});
         console.log('add to favorite: ', data)
     } catch (error) {
+        dispatch({type:ADD_TO_FAVORITE_FAILURE, payload: error})
         console.log(error);
     }
 }
 export const logout = () => async (dispatch) => {
     dispatch({type: LOGOUT})
     try {
+        localStorage.clear();
         dispatch({type: LOGOUT});
         console.log('logout: ')
     } catch (error) {

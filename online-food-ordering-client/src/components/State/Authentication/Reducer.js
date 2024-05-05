@@ -1,8 +1,9 @@
 import {
-    ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCESS,
-    GET_USER_REQUEST,
+    ADD_TO_FAVORITE_FAILURE,
+    ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCESS, GET_USER_FAILURE,
+    GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE,
     LOGIN_REQUEST, LOGIN_SUCCESS,
-    LOGOUT,
+    LOGOUT, REGISTER_FAILURE,
     REGISTER_REQUEST,
     REGISTER_SUCCESS
 } from "./ActionType";
@@ -17,40 +18,47 @@ const initialState = {
     favorites: [],
     success: null
 }
-const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case REGISTER_REQUEST:
-            break;
         case LOGIN_REQUEST:
-            break;
         case GET_USER_REQUEST:
-            break;
         case ADD_TO_FAVORITE_REQUEST:
             return {...state, isLoading: true, error: null, success: null}
-            break;
         case LOGOUT:
-            break;
+            return initialState;
         case REGISTER_SUCCESS:
-            break;
+            console.log(REGISTER_SUCCESS)
+            return state;
         case LOGIN_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 jwt: action.payload,
-                success: 'Register successfully'
+                success: 'Login successfully'
             }
         case ADD_TO_FAVORITE_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                error: null,
+                error: 'demo',
                 favorites: isPresentInFavorites(state.favorites, action.payload
                 ) ? state.favorites.filter((item) => item.id !== action.payload.id)
                     : [action.payload, ...state.favorites]
             }
-
+        case REGISTER_FAILURE:
+        case LOGIN_FAILURE:
+        case GET_USER_FAILURE:
+        case ADD_TO_FAVORITE_FAILURE:
+        case GET_USER_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                user: action.payload
+            }
         default:
-            break;
+            return state;
+
     }
 
 }

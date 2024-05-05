@@ -2,6 +2,8 @@ import React from 'react';
 import {Button, TextField, Typography} from "@mui/material";
 import {Field, Form, Formik} from "formik";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {loginUser} from "../State/Authentication/Action";
 
 const initalValues = {
     email: '',
@@ -10,7 +12,10 @@ const initalValues = {
 }
 const LoginForm = () => {
     const navigate = useNavigate();
-    const handleSubmit = () => {
+    const dispatch = useDispatch();
+    const handleSubmit = (values) => {
+        console.log('form login: ', values)
+        dispatch(loginUser({userData: values, navigate}))
     }
     return (
         <div>
@@ -22,18 +27,20 @@ const LoginForm = () => {
                 <Form>
                     <Field as={TextField}
                            label="email"
-                           component={TextField}
                            name={"email"}
                            fullWidth
                            variant="outlined"
+                           margin={'normal'}
+                           id={'email'}
                     />
                     <Field as={TextField}
                            label="password"
-                           component={TextField}
                            name={"password"}
                            fullWidth
                            variant="outlined"
                            margin={'normal'}
+                           id={'password'}
+                           type="password"
                     />
                     <Button sx={{mt: 2, padding: '1rem'}} fullWidth type={'submit'} variant={'contained'}>Login</Button>
                 </Form>

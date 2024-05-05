@@ -2,6 +2,8 @@ import React from 'react';
 import {Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography} from "@mui/material";
 import {Field, Form, Formik} from "formik";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {registerUser} from "../State/Authentication/Action";
 
 const initalValues = {
     fullName: '',
@@ -12,8 +14,10 @@ const initalValues = {
 }
 const RegisterForm = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const handleSubmit = (values) => {
         console.log('form value: ', values);
+        dispatch(registerUser({userData: values, navigate}))
     }
 
     return (
@@ -30,14 +34,15 @@ const RegisterForm = () => {
                            variant="outlined"
                            margin={'normal'}
                            id={'fullName'}
-                    /> <Field as={TextField}
-                              label="email"
-                              name={"email"}
-                              fullWidth
-                              variant="outlined"
-                              margin={'normal'}
-                              id={'email'}
-                />
+                    />
+                    <Field as={TextField}
+                           label="email"
+                           name={"email"}
+                           fullWidth
+                           variant="outlined"
+                           margin={'normal'}
+                           id={'email'}
+                    />
                     <Field as={TextField}
                            label="password"
                            name={"password"}
@@ -61,7 +66,8 @@ const RegisterForm = () => {
                         <MenuItem value={'ROLE_CUSTOMER'}>Customer</MenuItem>
                         <MenuItem value={'ROLE_RESTAURANT_OWNER'}>Restaurant</MenuItem>
                     </Field>
-                    <Button sx={{mt: 2, padding: '1rem'}} fullWidth type={'submit'} variant={'contained'}>Login</Button>
+                    <Button sx={{mt: 2, padding: '1rem'}} fullWidth type={'submit'}
+                            variant={'contained'}>Register</Button>
                 </Form>
             </Formik>
             <Typography variant={'body2'} align={'center'} sx={{mt: 3}}>
