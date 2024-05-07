@@ -22,11 +22,11 @@ import {
     GET_ALL_RESTAURANTS_SUCCESS,
     GET_RESTAURANT_BY_ID_FAILURE,
     GET_RESTAURANT_BY_ID_REQUEST,
-    GET_RESTAURANT_BY_ID_SUCCESS, GET_RESTAURANTS_CATEGORY_FAILURE,
+    GET_RESTAURANT_BY_ID_SUCCESS,
+    GET_RESTAURANTS_CATEGORY_FAILURE,
     GET_RESTAURANTS_CATEGORY_REQUEST,
-    GET_RESTAURANTS_CATEGORY_SUCCESS, GET_RESTAURANTS_EVENTS_FAILURE,
-    GET_RESTAURANTS_EVENTS_REQUEST, GET_RESTAURANTS_EVENTS_SUCCESS,
-    UPDATE_RESTAURANT_REQUEST,
+    GET_RESTAURANTS_CATEGORY_SUCCESS,
+    GET_RESTAURANTS_EVENTS_REQUEST,
     UPDATE_RESTAURANT_STATUS_FAILURE,
     UPDATE_RESTAURANT_STATUS_REQUEST,
     UPDATE_RESTAURANT_STATUS_SUCCESS
@@ -56,7 +56,7 @@ export const getRestaurantById = (reqData) => {
     return async (dispatch) => {
         dispatch({type: GET_RESTAURANT_BY_ID_REQUEST})
         try {
-            const {data} = await api.get(`/api/restaurant/${reqData.restaurantId}`, {
+            const {data} = await api.get(`/api/restaurants/${reqData.restaurantId}`, {
                 headers: {
                     Authorization: `Bearer ${reqData.jwt}`
                 }

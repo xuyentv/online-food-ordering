@@ -54,7 +54,8 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                user: action.payload
+                user: action.payload,
+                favorites: action.payload.favorites
             }
         default:
             return state;
