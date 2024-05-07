@@ -24,3 +24,39 @@ Content-Type: application/json
 
 
 ### API TẠO RESTAURANT.
+POST {{url}}/api/admin/restaurants
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "name": "Chả ca Ha Noi",
+  "description": "Cua Hang Cha Ca Ha Noi",
+  "cuisineType": "VietNam",
+  "address": {
+     "streetAddress": "219 Cau Giay",
+      "city": "Ha Noi",
+      "stateProvince" : "123",
+      "postalCode": "123",
+      "country": "VietNam"
+  },
+  "contactInformation": {
+    "email": "xuyentv@gmail.com",
+    "mobile": "0334012323",
+    "twitter": "",
+    "instagram": ""
+  },
+  "openingHour": "9AM",
+  "images": [
+    "https://images.pexels.com/photos/2253643/pexels-photo-2253643.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/799879/pexels-photo-799879.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/13457930/pexels-photo-13457930.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  ]
+
+}
+
+
+### API get all restaurants
+
+GET {{url}}/api/restaurants
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
