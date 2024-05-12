@@ -12,11 +12,12 @@ import {
     GET_INGREDIENT_CATEGORY_SUCCESS,
     GET_INGREDIENTS, UPDATE_STOCK
 } from "./ActionType";
+import {API_URL} from "../../config/api";
 
 export const getIngredientsOfRestaurant = ({id, jwt}) => {
     return async (dispatch) => {
         try {
-            const {data} = await axios.get(`/api/admin/ingredients/restaurant/${id}`,
+            const {data} = await axios.get(`${API_URL}/api/admin/ingredients/restaurant/${id}`,
                 {headers: {Authorization: `Bearer ${jwt}`}});
 
             dispatch({type: GET_INGREDIENTS, payload: data});
@@ -32,7 +33,7 @@ export const createIngredient = ({reqData, jwt}) => {
     return async (dispatch) => {
         dispatch({type: CREATE_INGREDIENT_REQUEST});
         try {
-            const {data} = await axios.post(`/api/admin/ingredients`, reqData,
+            const {data} = await axios.post(`${API_URL}/api/admin/ingredients`, reqData,
                 {headers: {Authorization: `Bearer ${jwt}`}});
 
             dispatch({type: CREATE_INGREDIENT_SUCCESS, payload: data});
@@ -48,7 +49,7 @@ export const createIngredientCategory = ({reqData, jwt}) => {
     return async (dispatch) => {
         dispatch({type: CREATE_INGREDIENT_CATEGORY_REQUEST});
         try {
-            const {data} = await axios.post(`/api/admin/ingredients/category`, reqData,
+            const {data} = await axios.post(`${API_URL}/api/admin/ingredients/category`, reqData,
                 {headers: {Authorization: `Bearer ${jwt}`}});
 
             dispatch({type: CREATE_INGREDIENT_CATEGORY_SUCCESS, payload: data});
@@ -64,7 +65,7 @@ export const getIngredientCategory = ({id, jwt}) => {
     return async (dispatch) => {
         dispatch({type: GET_INGREDIENT_CATEGORY_REQUEST});
         try {
-            const {data} = await axios.get(`/api/admin/ingredients/restaurant/${id}/category`,
+            const {data} = await axios.get(`${API_URL}/api/admin/ingredients/restaurant/${id}/category`,
                 {headers: {Authorization: `Bearer ${jwt}`}});
 
             dispatch({type: GET_INGREDIENT_CATEGORY_SUCCESS, payload: data});
@@ -79,7 +80,7 @@ export const getIngredientCategory = ({id, jwt}) => {
 export const updateStockOfIngredient = ({id, jwt}) => {
     return async (dispatch) => {
         try {
-            const {data} = await axios.get(`/api/admin/ingredients/${id}/stoke`,
+            const {data} = await axios.get(`${API_URL}/api/admin/ingredients/${id}/stoke`,
                 {headers: {Authorization: `Bearer ${jwt}`}});
 
             dispatch({type: UPDATE_STOCK, payload: data});

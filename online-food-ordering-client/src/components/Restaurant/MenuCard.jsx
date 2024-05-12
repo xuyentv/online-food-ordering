@@ -9,25 +9,7 @@ import {
     FormGroup
 } from "@mui/material";
 import {ExpandMore} from "@mui/icons-material";
-
-const ingredients = [
-    {
-        category: "Nuts & seeds",
-        ingredients: "Cashews"
-    },
-    {
-        category: "Protein",
-        ingredients: "Protein"
-    },
-    {
-        category: "Protein",
-        ingredients: "Bacon strips"
-    },
-    {
-        category: "bread",
-        ingredients: "Hamburger buns"
-    }
-]
+import {categorizeIngredients} from "../util/CategorizeIngredients";
 
 
 const demo = [
@@ -41,10 +23,11 @@ const demo = [
     },
 
 ]
-const MenuCard = () => {
+const MenuCard = ({item}) => {
     const handleCheckBoxChange = (item)=> {
         console.log(item)
     }
+    console.log('items MenuCard: ', item)
     return (
         <Accordion>
             <AccordionSummary
@@ -56,12 +39,12 @@ const MenuCard = () => {
                     <div className={'lg:flex items-center lg:gap-5'}>
                         <img
                             className={'w-[7rem] h-[7rem] object-cover'}
-                            src="https://images.pexels.com/photos/7828570/pexels-photo-7828570.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            src={item.images[0]}
                             alt=""/>
                         <div className={'space-y-1 lg:space-y-5 lg:max-w-2xl'}>
-                            <p className={'font-semibold text-xl'}>Burger</p>
-                            <p>499$</p>
-                            <p className={'text-gray-400'}>Nice food</p>
+                            <p className={'font-semibold text-xl'}>{item.name}</p>
+                            <p>{item.price}$</p>
+                            <p className={'text-gray-400'}>{item.description}</p>
                         </div>
                     </div>
                 </div>
@@ -69,13 +52,15 @@ const MenuCard = () => {
             <AccordionDetails>
                 <form action="">
                     <div className={'flex gap-5 flex-wrap'}>
-                        {demo.map((item) => (
+                        {Object.keys(categorizeIngredients(item.ingredients)).map((category) => (
                             <div>
-                                <p>{item.category}</p>
+                                <p>{category}</p>
                                 <FormGroup>
-                                    {item.ingredients.map((item) => (
-                                        <FormControlLabel control={<Checkbox onChange={()=> handleCheckBoxChange(item)}/>} label={item}/>
-                                    ))}
+                                    {categorizeIngredients(item.ingredients)[category].map(
+                                        (item) => (
+                                        <FormControlLabel key={item.name} control={<Checkbox onChange={()=> handleCheckBoxChange(item)}/>} label={item.name}/>
+                                    ))
+                                    }
                                 </FormGroup>
                             </div>
                         ))}

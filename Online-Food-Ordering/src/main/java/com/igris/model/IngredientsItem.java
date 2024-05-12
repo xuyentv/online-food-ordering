@@ -21,7 +21,6 @@ public class IngredientsItem {
     private IngredientCategory category;
 
     @ManyToOne
-    @JsonIgnore
     private Restaurant restaurant;
 
     private boolean inStoke = true;

@@ -40,7 +40,8 @@ export const menuItemReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                menuItems: action.payload
+                menuItems: action.payload,
+                message: "Get GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS Successfully",
             }
         case DELETE_MENU_ITEM_SUCCESS:
             return {

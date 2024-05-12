@@ -7,12 +7,13 @@ import {
     UPDATE_ORDER_STATUS_REQUEST,
     UPDATE_ORDER_STATUS_SUCCESS
 } from "./ActionType";
+import {API_URL} from "../../config/api";
 
 export const updateOrderStatus = ({orderId, orderStatus, jwt}) => {
     return async (dispatch) => {
         dispatch({type: UPDATE_ORDER_STATUS_REQUEST})
         try {
-            const {data} = await axios.put(`/api/admin/orders${orderId}/${orderStatus}`, {},
+            const {data} = await axios.put(`${API_URL}/api/admin/orders${orderId}/${orderStatus}`, {},
                 {headers: {Authorization: `Bearer ${jwt}`}});
             dispatch({type: UPDATE_ORDER_STATUS_SUCCESS, payload: data});
         } catch (err) {
@@ -27,7 +28,7 @@ export const fetchRestaurantsOrder = ({restaurantId, orderStatus, jwt}) => {
     return async (dispatch) => {
         dispatch({type: GET_RESTAURANTS_ORDER_REQUEST})
         try {
-            const {data} = await axios.get(`/api/admin/order/restaurant/${restaurantId}`, {
+            const {data} = await axios.get(`${API_URL}/api/admin/order/restaurant/${restaurantId}`, {
                     params: {order_status: orderStatus}
                 },
                 {headers: {Authorization: `Bearer ${jwt}`}});

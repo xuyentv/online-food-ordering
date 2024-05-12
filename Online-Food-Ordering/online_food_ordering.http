@@ -60,3 +60,84 @@ Content-Type: application/json
 GET {{url}}/api/restaurants
 Authorization: Bearer {{jwt}}
 Content-Type: application/json
+
+### API admin category
+
+POST {{url}}/api/admin/category
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "name": "burger"
+}
+
+
+
+### API tao ingredients
+
+POST {{url}}/api/admin/ingredients/category
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "name": "source",
+  "restaurantId": 2
+}
+
+
+### API tao
+
+POST {{url}}/api/admin/ingredients
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "name": "white source",
+  "restaurantId": 2,
+  "categoryId": 1
+}
+
+
+### get ingredients of restaurant
+
+GET {{url}}/api/admin/ingredients/restaurant/2
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+
+### tao mon an
+
+POST {{url}}/api/admin/food
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "name": "Burger",
+  "description": "Burger",
+  "price": 17,
+  "images": [
+    "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/428355/pexels-photo-428355.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/2876748/pexels-photo-2876748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  ],
+  "restaurantId": 2,
+  "vegetarian": true,
+  "seasonal": true,
+  "category": {
+    "id": 52,
+    "name": "burger"
+  },
+  "ingredients": [
+    {
+      "id":1,
+      "name": "white source",
+      "category": {
+        "id": 1,
+        "name": "source"
+      },
+      "inStoke": true
+    }
+  ]
+
+}
