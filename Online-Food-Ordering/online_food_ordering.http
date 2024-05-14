@@ -112,8 +112,8 @@ Authorization: Bearer {{jwt}}
 Content-Type: application/json
 
 {
-  "name": "Burger",
-  "description": "Burger",
+  "name": "Pizza",
+  "description": "Pizza",
   "price": 17,
   "images": [
     "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -122,11 +122,11 @@ Content-Type: application/json
     "https://images.pexels.com/photos/2876748/pexels-photo-2876748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   ],
   "restaurantId": 2,
-  "vegetarian": true,
+  "vegetarian": false,
   "seasonal": true,
   "category": {
-    "id": 52,
-    "name": "burger"
+    "id": 1,
+    "name": "Pizza"
   },
   "ingredients": [
     {

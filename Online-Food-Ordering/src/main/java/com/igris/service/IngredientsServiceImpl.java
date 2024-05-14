@@ -68,7 +68,7 @@ public class IngredientsServiceImpl implements IngredientsService{
         ingredientsItem.setRestaurant(restaurant);
         ingredientsItem.setCategory(category);
         IngredientsItem item = ingredientsItemRepository.save(ingredientsItem);
-        category.getIngredients().add(item);
+//        category.getIngredients().add(item);
         return item;
     }
 

@@ -42,7 +42,7 @@ public class FoodController {
                                                         @RequestHeader("Authorization") String jwt) throws Exception {
         User user = userService.findUserByJwtToken(jwt);
         List<Food> foods = foodService.getRestaurantFood(restaurantId, vegetarian, nonveg, seasonal, food_category);
-        return new ResponseEntity<>(foods, HttpStatus.CREATED);
+        return new ResponseEntity<>(foods, HttpStatus.OK);
     }
 
 }
