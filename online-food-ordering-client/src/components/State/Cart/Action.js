@@ -21,7 +21,7 @@ export const findCart = (token) => {
     return async (dispatch) => {
         dispatch({type: FIND_CART_REQUEST})
         try {
-            const {data} = await axios.get(`${API_URL}/api/cart/`,
+            const {data} = await axios.get(`${API_URL}/api/cart`,
                 {headers: {Authorization: `Bearer ${token}`}});
             dispatch({type: FIND_CART_SUCCESS, payload: data});
         } catch (err) {
@@ -51,7 +51,7 @@ export const addItemToCart = (reqData) => {
     return async (dispatch) => {
         dispatch({type: ADD_ITEM_TO_CART_REQUEST})
         try {
-            const {data} = await axios.put(`${API_URL}/api/carts/add`, reqData.cartItem,
+            const {data} = await axios.put(`${API_URL}/api/cart/add`, reqData.cartItem,
                 {headers: {Authorization: `Bearer ${reqData.token}`}});
             dispatch({type: ADD_ITEM_TO_CART_SUCCESS, payload: data});
         } catch (err) {

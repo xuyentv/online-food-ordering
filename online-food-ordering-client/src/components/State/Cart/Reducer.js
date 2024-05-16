@@ -26,11 +26,18 @@ export const cartReducer = (state = initialState, action) => {
                 error: null
             }
         case FIND_CART_SUCCESS:
+            console.log('cart response: ', action.payload)
+            return{
+                ...state,
+                loading: false,
+                cart: action.payload,
+                cartItems: action.payload.items,
+            }
         case CLEARE_CART_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                cartL: action.payload,
+                cart: action.payload,
                 cartItems: action.payload.items,
             }
         case ADD_ITEM_TO_CART_SUCCESS:

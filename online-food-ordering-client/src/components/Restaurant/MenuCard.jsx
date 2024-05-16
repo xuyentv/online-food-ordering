@@ -10,24 +10,33 @@ import {
 } from "@mui/material";
 import {ExpandMore} from "@mui/icons-material";
 import {categorizeIngredients} from "../util/CategorizeIngredients";
+import {useDispatch} from "react-redux";
+import {addItemToCart} from "../State/Cart/Action";
 
-
-const demo = [
-    {
-        category: "Nuts & seeds",
-        ingredients: ["Cashews"]
-    },
-    {
-        category: "Protein",
-        ingredients: ["Protein", "Bacon strips"]
-    },
-
-]
 const MenuCard = ({item}) => {
-    const handleCheckBoxChange = (item)=> {
-        console.log(item)
+    const [selectedIngredients, setSelectedIngredients] = React.useState([])
+    const dispatch = useDispatch()
+    const handleAddItemToCart = (e) => {
+        e.preventDefault()
+        const reqData = {
+            token: localStorage.getItem("jwt"),
+            cartItem: {
+                foodId: item.id,
+                quantity: 1,
+                ingredients: selectedIngredients
+            }
+        }
+        dispatch(addItemToCart(reqData))
+        console.log('data: ', reqData)
+
     }
-    console.log('items MenuCard: ', item)
+    const handleCheckBoxChange = (itemName) => {
+        if (selectedIngredients.includes(itemName)) {
+            setSelectedIngredients(selectedIngredients.filter(item => item !== itemName))
+        } else {
+            setSelectedIngredients([...selectedIngredients, itemName])
+        }
+    }
     return (
         <Accordion>
             <AccordionSummary
@@ -57,9 +66,11 @@ const MenuCard = ({item}) => {
                                 <p>{category}</p>
                                 <FormGroup>
                                     {categorizeIngredients(item.ingredients)[category].map(
-                                        (item) => (
-                                        <FormControlLabel key={item.name} control={<Checkbox onChange={()=> handleCheckBoxChange(item)}/>} label={item.name}/>
-                                    ))
+                                        (item2) => (
+                                            <FormControlLabel key={item2.name} control={<Checkbox
+                                                onChange={() => handleCheckBoxChange(item2.name)}/>}
+                                                              label={item2.name}/>
+                                        ))
                                     }
                                 </FormGroup>
                             </div>
@@ -68,8 +79,9 @@ const MenuCard = ({item}) => {
                     <div className={'pt-5'}>
                         <Button
                             variant={'contained'}
-                            type={'submit'}
+                            type={'button'}
                             disabled={false}
+                            onClick={handleAddItemToCart}
                         >{true ? 'Add to Card' : 'Out Of Stock'}</Button>
                     </div>
 

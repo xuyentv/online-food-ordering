@@ -56,7 +56,7 @@ const RestaurantDetail = () => {
           foodCategory: selectedCategory,
         })
     );
-  }, [selectedCategory]);
+  }, [selectedCategory, foodType]);
   console.log("restaurant detail", restaurant);
   return (
     <div className={"px-5  lg:px-20"}>
