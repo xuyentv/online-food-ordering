@@ -16,7 +16,7 @@ const Home = () => {
         dispatch(getAllRestaurantsAction(jwt))
         dispatch(findCart(jwt))
     }, []);
-    console.log('restaurant', restaurant);
+    console.log('restaurant home: ', restaurant);
 
     return (
         <div className={'pb-10'}>
@@ -41,7 +41,7 @@ const Home = () => {
                     Order From Our Handpicked Favorites
                 </h1>
                 <div className={'flex flex-wrap items-center justify-around gap-5'}>
-                    {restaurant.restaurants.map(item => <RestaurantCard item={item}/>)}
+                    {restaurant.restaurants.map(res => <RestaurantCard item={res}/>)}
                 </div>
             </section>
 

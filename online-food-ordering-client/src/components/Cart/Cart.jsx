@@ -4,7 +4,8 @@ import CartItem from "./CartItem";
 import AddressCart from "./AddressCart";
 import {AddLocation} from "@mui/icons-material";
 import {Field, Form, Formik} from "formik";
-// import * as Yup from "yup"
+import {useDispatch, useSelector} from "react-redux";
+import {createOrder} from "../State/Order/Action";
 
 const style = {
     position: 'absolute',
@@ -24,12 +25,6 @@ const initialValues = {
     pinCode: "",
     city: "",
 }
-// const validationSchema = Yup.object.shape({
-//     streetAddress: Yup.string().required("Street address is required"),
-//     state: Yup.string().required("State address is required"),
-//     pinCode: Yup.string().required("PinCode address is required"),
-//     city: Yup.string().required("City address is required"),
-// })
 
 const items = [
     1, 2, 3, 4
@@ -43,23 +38,44 @@ const Cart = () => {
         setOpen(true)
 
     }
+    const dispatch = useDispatch();
+    const {cart, auth} = useSelector(store => store);
+
     const handleClose = () => setOpen(false)
     const handleSubmit = (value) => {
         console.log('form value', value)
 
+        const data = {
+
+            jwt: localStorage.getItem('jwt'),
+            order:{
+                restaurantId: cart.cartItems[0].food?.restaurant.id,
+                deliveryAddress:{
+                    fullName: auth.user?.fullName,
+                    streetAddress: value.streetAddress,
+                    city: value.city,
+                    state: value.state,
+                    postalCode: value.postalCode,
+                    country: "vietnam",
+
+                }
+            }
+        }
+        dispatch(createOrder(data))
     }
+    console.log('cart parent: ', cart)
     return (
         <div>
             <main className={'lg:flex justify-between'}>
                 <section className={'lg:w-[30%] space-y-6 lg:min-h-screen pt-10'}>
-                    {items.map(item => (<CartItem/>))}
+                    {cart.cartItems.map(item => (<CartItem item={item}/>))}
                     <Divider/>
                     <div className={'billDetails px-5 text-sm'}>
                         <p className={'font-extralight py-5 '}>Bill Details</p>
                         <div className={'space-y-3'}>
                             <div className={'flex justify-between text-gray-400'}>
                                 <p>Item total</p>
-                                <p>$599</p>
+                                <p>${cart?.cart?.total}</p>
                             </div>
                             <div className={'flex justify-between text-gray-400'}>
                                 <p>Deliver Fee</p>
@@ -73,7 +89,7 @@ const Cart = () => {
                         </div>
                         <div className={'flex justify-between text-gray-400'}>
                             <p>Total pay</p>
-                            <p>$1234</p>
+                            <p>${cart?.cart?.total + 8+10}</p>
 
                         </div>
                     </div>

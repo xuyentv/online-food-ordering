@@ -3,6 +3,7 @@ package com.igris.controller;
 import com.igris.model.Order;
 import com.igris.model.User;
 import com.igris.request.OrderRequest;
+import com.igris.response.PaymentResponse;
 import com.igris.service.OrderService;
 import com.igris.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,15 @@ public class OrderController {
     private UserService userService;
 
     @PostMapping("/order")
-    public ResponseEntity<Order> createOrder(
+    public ResponseEntity<PaymentResponse> createOrder(
             @RequestBody OrderRequest req,
             @RequestHeader("Authorization") String jwt
     ) throws Exception {
         User user = userService.findUserByJwtToken(jwt);
         Order order = orderService.createOrder(req, user);
-        return new ResponseEntity<>(order, HttpStatus.OK);
+        PaymentResponse res = new PaymentResponse();
+        res.setPayment_url("http://localhost:3000/payment/success/" + order.getId());
+        return new ResponseEntity<>(res, HttpStatus.OK);
 
     }
 

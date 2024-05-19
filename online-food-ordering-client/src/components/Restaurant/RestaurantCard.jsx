@@ -27,7 +27,7 @@ const RestaurantCard = ({item}) => {
 
                 <img
                     className={'w-full h-[10rem] rounded-t-md object-cover '}
-                    src={item.images[0]}
+                    src={item?.images[0]}
                     alt="Restaurant Card"/>
 
                 <Chip
