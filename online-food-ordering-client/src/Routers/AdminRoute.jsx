@@ -2,11 +2,14 @@ import {Route, Routes} from "react-router-dom";
 import CreateRestaurantForm from "../AdminComponent/CreateRestaurant/CreateRestaurantForm";
 import Admin from "../AdminComponent/Admin/Admin";
 
-export  const AdminRoute = () => {
+export const AdminRoute = () => {
+    console.log('admin ; ');
     return (
         <div>
             <Routes>
-                <Route path="/*" component={false ? <CreateRestaurantForm/> : <Admin/>} />
+                <Route path="/*" element={<Admin />}>
+                </Route>
+                {/*<Route path="/create" element={<CreateRestaurantForm />} />*/}
             </Routes>
         </div>
     )
