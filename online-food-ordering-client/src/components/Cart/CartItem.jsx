@@ -6,9 +6,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {removeCartItem, updateCartItem} from "../State/Cart/Action";
 
-const items = [
-    1, 2, 3, 4
-]
 const CartItem = ({item}) => {
     console.log('item cart: ', item)
     const {auth, cart} = useSelector((store) => store)
@@ -17,6 +14,7 @@ const CartItem = ({item}) => {
     const jwt = localStorage.getItem("jwt");
     const handleUpdateCartItem = (value) => {
         if (value === -1 && item.quantity === 1) {
+            console.log('remove cart: ', value)
             handleRemoveCartItem();
         }
         const data = {
@@ -26,8 +24,7 @@ const CartItem = ({item}) => {
         dispatch(updateCartItem({data, jwt}))
     }
     const handleRemoveCartItem = () => {
-        dispatch(removeCartItem({cartItemId: item.id, jwt: auth.jwt || jwt}))
-
+        dispatch(removeCartItem({cartItemId: item.id, jwt: auth.jwt}))
     }
     return (
         <div className={'px-5'}>
@@ -42,12 +39,12 @@ const CartItem = ({item}) => {
                         <p>{item.food.name}</p>
                         <div className={'flex justify-between items-center'}>
                             <div className={'flex space-x-1 items-center'}>
-                                <IconButton onClick={()=> handleUpdateCartItem(-1)}>
+                                <IconButton onClick={() => handleUpdateCartItem(-1)}>
                                     <RemoveCircleOutline/>
                                 </IconButton>
                                 <div
                                     className={'w-5 h-5 text-xs flex items-center justify-center'}>{item.quantity}</div>
-                                <IconButton onClick={()=> handleUpdateCartItem(1)}>
+                                <IconButton onClick={() => handleUpdateCartItem(1)}>
                                     <AddCircleOutline/>
                                 </IconButton>
                             </div>

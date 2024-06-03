@@ -19,7 +19,7 @@ export const ingredientsReducer = (state = initialState, action) => {
         case CREATE_INGREDIENT_CATEGORY_SUCCESS:
             return {...state, category: [...state.category, action.payload]}
         case CREATE_INGREDIENT_SUCCESS:
-            return {...state, ingredients: [...state, action.payload]}
+            return {...state, ingredients: [...state.ingredients, action.payload]}
         case UPDATE_STOCK:
             console.log('dud L ', action.payload)
             return {

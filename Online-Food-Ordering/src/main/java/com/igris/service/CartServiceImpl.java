@@ -83,6 +83,9 @@ public class CartServiceImpl implements CartService {
         CartItem item = cartItemOptional.get();
 
         cart.getItems().remove(item);
+        if (cart.getItems().isEmpty()){
+            cartItemRepository.delete(item);
+        }
 
         return cartRepository.save(cart);
     }

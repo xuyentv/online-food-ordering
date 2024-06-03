@@ -94,31 +94,31 @@ const RestaurantDetail = () => {
                         <CardContent>
                             <div className={"space-y-4 text-gray-200"}>
                                 <div className={"flex"}>
-                                    <p className={"w-48"}>Email</p>
+                                    <p className={"w-48"}>City</p>
                                     <p className={"text-gray-400"}>
                                         <span className={"pr-5"}>-</span>
-                                        {restaurant?.userRestaurant?.contractInformation?.email}
+                                        {restaurant?.userRestaurant?.address?.city}
                                     </p>
                                 </div>
                                 <div className={"flex"}>
-                                    <p className={"w-48"}>Mobile</p>
+                                    <p className={"w-48"}>Country</p>
                                     <p className={"text-gray-400"}>
                                         <span className={"pr-5"}>-</span>
-                                        {restaurant?.userRestaurant?.contractInformation?.mobile}
+                                        {restaurant?.userRestaurant?.address?.country}
                                     </p>
                                 </div>
                                 <div className={"flex"}>
                                     <p className={"w-48"}>Post Code</p>
                                     <p className={"text-gray-400"}>
                                         <span className={"pr-5"}>-</span>
-                                        Code With Moc
+                                        {restaurant?.userRestaurant?.address?.postalCode}
                                     </p>
                                 </div>
                                 <div className={"flex"}>
                                     <p className={"w-48"}>Street Address</p>
                                     <p className={"text-gray-400"}>
                                         <span className={"pr-5"}>-</span>
-                                        Code With Moc
+                                        {restaurant?.userRestaurant?.address?.streetAddress}
                                     </p>
                                 </div>
 

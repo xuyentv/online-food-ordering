@@ -48,9 +48,9 @@ const Cart = () => {
         const data = {
 
             jwt: localStorage.getItem('jwt'),
-            order:{
+            order: {
                 restaurantId: cart.cartItems[0].food?.restaurant.id,
-                deliveryAddress:{
+                deliveryAddress: {
                     fullName: auth.user?.fullName,
                     streetAddress: value.streetAddress,
                     city: value.city,
@@ -89,7 +89,7 @@ const Cart = () => {
                         </div>
                         <div className={'flex justify-between text-gray-400'}>
                             <p>Total pay</p>
-                            <p>${cart?.cart?.total + 8+10}</p>
+                            <p>${cart?.cart?.total + 8 + 10}</p>
 
                         </div>
                     </div>
@@ -101,9 +101,6 @@ const Cart = () => {
                             Choose Delivery Address
                         </h1>
                         <div className={'flex gap-5 flex-wrap justify-center'}>
-                            {[1, 1, 1, 1, 1, 1].map(item => (
-                                <AddressCart handleSelectAddress={createOrderUsingSelectedAddress} item={item}
-                                             showButton={true}/>))}
                             <Card className={'flex gap-5 w-64 p-5'}>
                                 <AddLocation></AddLocation>
                                 <div className={'space-y-3 text-gray-500'}>
@@ -111,7 +108,7 @@ const Cart = () => {
                                         Add New Address
                                     </h1>
                                     <p className={''}>
-                                        219 Nguyen Ngoc Vu, Cau Giay, Ha Noi
+
                                     </p>
                                     <Button variant={'outlined'} fullWidth onClick={handleOpenAddressModel}>Add</Button>
                                 </div>

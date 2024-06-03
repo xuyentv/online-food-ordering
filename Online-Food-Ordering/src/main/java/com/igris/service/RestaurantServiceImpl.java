@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
@@ -100,11 +101,13 @@ public class RestaurantServiceImpl implements RestaurantService {
         dto.setImages(restaurant.getImages());
         dto.setTitle(restaurant.getName());
         dto.setId(restaurantId);
-        if (user.getFavorites().contains(dto)) {
-            user.getFavorites().remove(dto);
+        Set<RestaurantDto> listFavorites = user.getFavorites();
+        if (listFavorites.contains(dto)) {
+            listFavorites.remove(dto);
         } else {
-            user.getFavorites().add(dto);
+            listFavorites.add(dto);
         }
+        user.setFavorites(listFavorites);   
         userRepository.save(user);
         return dto;
     }

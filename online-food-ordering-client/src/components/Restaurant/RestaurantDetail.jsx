@@ -62,7 +62,6 @@ const RestaurantDetail = () => {
     <div className={"px-5  lg:px-20"}>
       <section>
         <h3 className={"text-gray-500 py-2 mt-10"}>
-          Home/india/indian fast food/3
         </h3>
         <div>
           <Grid container spacing={2}>
