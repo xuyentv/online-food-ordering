@@ -53,7 +53,7 @@ public class IngredientController {
 
     }
 
-    @GetMapping("/restaurant/{id}")
+    @GetMapping("/restaurants/{id}")
     public ResponseEntity<List<IngredientsItem>> getRestaurantIngredient(
             @PathVariable Long id
     ) throws Exception {
@@ -62,7 +62,7 @@ public class IngredientController {
 
     }
 
-    @GetMapping("/restaurant/{id}/category")
+    @GetMapping("/restaurants/{id}/category")
     public ResponseEntity<List<IngredientCategory>> getRestaurantIngredientCategory(
             @PathVariable Long id
     ) throws Exception {

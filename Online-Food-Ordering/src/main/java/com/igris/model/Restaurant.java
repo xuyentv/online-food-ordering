@@ -33,7 +33,7 @@ public class Restaurant {
     private Address address;
 
     @Embedded
-    private ContactInformation contractInformation;
+    private ContactInformation contactInformation;
 
     private String openingHours;
 

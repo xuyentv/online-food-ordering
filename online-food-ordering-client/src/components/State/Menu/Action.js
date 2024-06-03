@@ -39,7 +39,7 @@ export const getMenuItemsByRestaurantId = (reqData) => {
     return async (dispatch) => {
         dispatch({ type: GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST })
         try {
-            const { data } = await axios.get(`${API_URL}/api/food/restaurant/${reqData.restaurantId}/category?vegetarian=${reqData.vegetarian}&seasonal=${reqData.seasonal}&nonveg=${reqData.nonveg}&food_category=${reqData.foodCategory}`,
+            const { data } = await axios.get(`${API_URL}/api/food/restaurants/${reqData.restaurantId}/category?vegetarian=${reqData.vegetarian}&seasonal=${reqData.seasonal}&nonveg=${reqData.nonveg}&food_category=${reqData.foodCategory}`,
                 { headers: { Authorization: `Bearer ${reqData.jwt}` } });
             dispatch({ type: GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS, payload: data });
         } catch (err) {

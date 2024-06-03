@@ -33,12 +33,12 @@ public class FoodController {
         return new ResponseEntity<>(foods, HttpStatus.CREATED);
     }
 
-    @GetMapping("/restaurant/{restaurantId}/category")
+    @GetMapping("/restaurants/{restaurantId}/category")
     public ResponseEntity<List<Food>> getRestaurantFood(@RequestParam(required = false) boolean vegetarian,
                                                         @RequestParam(required = false) boolean seasonal,
                                                         @RequestParam(required = false) boolean nonveg,
                                                         @PathVariable Long restaurantId,
-                                                         @RequestParam(required = false) String food_category,
+                                                        @RequestParam(required = false) String food_category,
                                                         @RequestHeader("Authorization") String jwt) throws Exception {
         User user = userService.findUserByJwtToken(jwt);
         List<Food> foods = foodService.getRestaurantFood(restaurantId, vegetarian, nonveg, seasonal, food_category);

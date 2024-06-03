@@ -21,7 +21,7 @@ public class AdminOrderController {
     private OrderService orderService;
 
 
-    @GetMapping("/order/restaurant/{id}")
+    @GetMapping("/orders/restaurants/{id}")
     public ResponseEntity<List<Order>> getOrderHistory(
             @PathVariable Long id,
             @RequestParam(required = false) String order_status,
@@ -33,7 +33,7 @@ public class AdminOrderController {
     }
 
 
-    @PutMapping("/order/{id}/{orderStatus}")
+    @PutMapping("/orders/{id}/{orderStatus}")
     public ResponseEntity<Order> updateOrderStatus(
             @PathVariable Long id,
             @PathVariable String orderStatus,

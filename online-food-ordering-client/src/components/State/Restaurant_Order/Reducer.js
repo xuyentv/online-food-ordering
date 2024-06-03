@@ -2,7 +2,7 @@ import {
     GET_RESTAURANTS_ORDER_FAILURE,
     GET_RESTAURANTS_ORDER_REQUEST,
     GET_RESTAURANTS_ORDER_SUCCESS, UPDATE_ORDER_STATUS_FAILURE,
-    UPDATE_ORDER_STATUS_REQUEST
+    UPDATE_ORDER_STATUS_REQUEST, UPDATE_ORDER_STATUS_SUCCESS
 } from "./ActionType";
 
 const initialState = {
@@ -16,9 +16,13 @@ export const restaurantsOrderReducer = (state = initialState, action) => {
         case UPDATE_ORDER_STATUS_REQUEST:
             return {...state, loading: true, error: null}
         case GET_RESTAURANTS_ORDER_SUCCESS:
+            return {...state, loading: false, orders: action?.payload}
+        case UPDATE_ORDER_STATUS_SUCCESS:
+            console.log('order update status ', state.orders)
             const updatedOrders = state.orders.map((order) =>
                 order.id === action.payload.id ? action.payload : order)
-            return {...state, loading: false, orders: updatedOrders}
+            console.log('order update status ', updatedOrders)
+            return {...state, error: null, loading: false, orders: updatedOrders}
         case GET_RESTAURANTS_ORDER_FAILURE:
         case UPDATE_ORDER_STATUS_FAILURE:
             return {...state, loading: false, error: action.error}

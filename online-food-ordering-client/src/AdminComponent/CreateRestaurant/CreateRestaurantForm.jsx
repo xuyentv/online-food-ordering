@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import { AddPhotoAlternate, Close } from "@mui/icons-material";
 import { uploadImageToCloudiany } from "../../components/util/UploadToCloudinary";
+import {useDispatch} from "react-redux";
+import {createRestaurant} from "../../components/State/Restaurant/Action";
 const initialValues = {
   name: "",
   description: "",
@@ -26,6 +28,8 @@ const initialValues = {
   images: [""],
 };
 const CreateRestaurantForm = () => {
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt")
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: (values) => {
@@ -49,6 +53,7 @@ const CreateRestaurantForm = () => {
         images: values.images,
       };
       console.log("save data: ", data);
+      dispatch(createRestaurant({data, token: jwt}))
     },
   });
   const handleImageChange = async (e) => {

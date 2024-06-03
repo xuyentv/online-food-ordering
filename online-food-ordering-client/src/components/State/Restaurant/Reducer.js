@@ -16,7 +16,7 @@ import {
     GET_ALL_RESTAURANTS_SUCCESS, GET_RESTAURANT_BY_ID_FAILURE,
     GET_RESTAURANT_BY_ID_REQUEST,
     GET_RESTAURANT_BY_ID_SUCCESS,
-    GET_RESTAURANT_BY_USER_ID_SUCCESS, GET_RESTAURANTS_CATEGORY_FAILURE,
+    GET_RESTAURANT_BY_USER_ID_SUCCESS, GET_RESTAURANTS_BY_USER_SUCCESS, GET_RESTAURANTS_CATEGORY_FAILURE,
     GET_RESTAURANTS_CATEGORY_REQUEST,
     GET_RESTAURANTS_CATEGORY_SUCCESS,
     GET_RESTAURANTS_EVENTS_SUCCESS,
@@ -67,6 +67,13 @@ const restaurantReducer = (state = initalState, action) => {
                 ...state,
                 loading: false,
                 restaurant: action.payload,
+            }
+
+        case GET_RESTAURANTS_BY_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                userRestaurant: action.payload,
             }
         case GET_RESTAURANT_BY_USER_ID_SUCCESS:
         case UPDATE_RESTAURANT_STATUS_SUCCESS:
