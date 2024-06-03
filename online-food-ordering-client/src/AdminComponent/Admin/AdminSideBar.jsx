@@ -49,7 +49,8 @@ const AdminSideBar = ({handleClose}) => {
                     <div
                         className={'w-[70vw] lg:w-[20vw] h-screen flex flex-col justify-center text-xl space-y-[1.65rem] '}>
                         {menu.map((item, i) => (<>
-                            <div  onClick={()=> handleNavigate(item)} className={'px-5 flex items-center gap-5 cursor-pointer'}>
+                            <div onClick={() => handleNavigate(item)}
+                                 className={'px-5 flex items-center gap-5 cursor-pointer'}>
                                 {item.icon}
                                 <span>{item.title}</span>
                             </div>

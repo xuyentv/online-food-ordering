@@ -4,6 +4,7 @@ import {
     GET_USERS_ORDERS_REQUEST,
     GET_USERS_ORDERS_SUCCESS
 } from "./ActionType";
+import {UPDATE_ORDER_STATUS_SUCCESS} from "../Restaurant_Order/ActionType";
 
 const initialState = {
     loading: false,
@@ -21,6 +22,7 @@ export const orderReducer = (state = initialState, {type, payload}) => {
             return {...state, notifications: payload, error: null, loading: false}
         case GET_USERS_ORDERS_FAILURE:
             return {...state, error: payload, loading: false}
+
         default:
             return state;
     }
